@@ -1,57 +1,13 @@
-# Project Name
+Java 11 is suggested
 
-(short, 1-3 sentenced, description of the project)
+```Console
+git clone https://github.com/Azure-Samples/serviceconnector-webapp-keyvault-java
 
-## Features
+cd serviceconnector-webapp-keyvault-java
 
-This project framework provides the following features:
+mvn clean package -DskipTests 
 
-* Feature 1
-* Feature 2
-* ...
+az webapp connection create keyvault --system-identity --resource-group <group-name> --name <app-name> 
 
-## Getting Started
-
-### Prerequisites
-
-(ideally very short, if any)
-
-- OS
-- Library version
-- ...
-
-### Installation
-
-(ideally very short)
-
-- npm install [package name]
-- mvn install
-- ...
-
-### Quickstart
-(Add steps to get up and running quickly)
-
-1. git clone [repository clone url]
-2. cd [respository name]
-3. ...
-
-
-## Demo
-
-A demo app is included to show how to use the project.
-
-To run the demo, follow these steps:
-
-(Add steps to start up the demo)
-
-1.
-2.
-3.
-
-## Resources
-
-(Any additional resources or related projects)
-
-- Link to supporting information
-- Link to similar sample
-- ...
+az webapp deploy --resource-group <group-name> --name <app-name> --src-path ./target/keyvault-0.0.1-SNAPSHOT.jar --type jar
+```
