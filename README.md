@@ -26,7 +26,7 @@ az login
 - JDK 11 or higher.
 - Maven 3.8.0 or higher.
 
-### 1. Clone the sample codes and build
+### 2. Clone the sample codes and build
 
 Clone the sample repository:
 ```bash
@@ -41,7 +41,7 @@ Build the package
 mvn clean package -DskipTests
 ```
 
-### 1. Create App Service 
+### 3. Create App Service 
 
 
 Create the webapp:
@@ -54,26 +54,26 @@ az appservice plan create -g <myResourceGroupName> -n <myPlanName> --is-linux --
 az webapp create -g <myResourceGroupName> -n <myAppName> --runtime "JAVA|11-java11" --plan <myPlanName>
 ```
 
-### 1. Create Azure Keyvault
+### 4. Create Azure Keyvault
 ```azurecli
 az keyvault create -g <myResourceGroupName> -n <myVaultName>
 az keyvault secret set --name connectionString --value testValue --vault-name <myVaultName>
 ```
 
-### 1. Create the connection
+### 5. Create the connection
 ```azurecli
 az webapp connection create keyvault -g <myResourceGroupName> -n <myAppName> --tg <myResourceGroupName> --vault <myVaultName> --system-identity --client-type springboot
 ```
 
-### 1. Deploy to Azure App Service
+### 6. Deploy to Azure App Service
 ```azurecli
 az webapp deploy -g <myResourceGroupName> -n <myAppName> --src-path ./target/keyvault-0.0.1-SNAPSHOT.jar --type jar
 ```
 
-### 1. Validate the connection
+### 7. Validate the connection
 Test that the app will get the secret from Keyvault by `curl https://<myAPpName>.azurewebsites.net/get`, you'll see `testValue`.
 
-### 1. Cleanup the resource
+### 8. Cleanup the resource
 ```azurecli
 az group delete -n <myResourceGroupName> --yes
 ```
